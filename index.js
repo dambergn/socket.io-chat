@@ -10,15 +10,25 @@ app.get('/', function(req, res){
 let connections = {};
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('a user connected', socket.id);
 
-  socket.on('disconnect', function(){
-    console.log(`user ${socket.id} disconnected`);
-  });
+  // socket.on('register', handleRegister)
+
+  // socket.on('join', handleJoin)
+
+  // socket.on('leave', handleLeave)
 
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);
     io.emit('chat message', msg);
+  });
+
+  // socket.on('chatrooms', handleGetChatrooms)
+
+  // socket.on('availableUsers', handleGetAvailableUsers)
+
+  socket.on('disconnect', function(){
+    console.log(`user ${socket.id} disconnected`);
   });
   
   socket.on('error', function (err) {
@@ -27,6 +37,6 @@ io.on('connection', function(socket){
   })
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(3002, function(){
+  console.log('listening on *:3002');
 });

@@ -49,20 +49,44 @@
     #messages li:nth-child(odd) {
       background: #eee;
     }
+
+    #message-area{
+      border: 1px solid black;
+      display: inline-block;
+      /* position: fixed; */
+      width: 80%;
+      height: 90%;
+    }
+
+    #menu{
+      border: 1px solid black;
+      display: inline-block;
+      position: fixed;
+      width: 19%;
+      height: 90%;
+    }
   </style>
 </head>
 
 <body>
   <div>
-    <ul id="messages"></ul>
+    <div id="message-area">
+      <ul id="messages"></ul>
+    </div>
+    <div id="menu">
+      <p>Choose a display Name</p>
+      <input id="user-name">
+    </div>
   </div>
+  
   <form action="">
     <input id="m" autocomplete="off" /><button>Send</button>
   </form>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
-    var socket = io();
+    const socket = io(window.location.href);
+    let userName = document.getElementById('user-name').value;
     $(function () {
     
     $('form').submit(function(e){
@@ -71,6 +95,7 @@
       $('#m').val('');
       return false;
     });
+
     socket.on('chat message', function(msg){
       $('#messages').append($('<li>').text(msg));
     });
