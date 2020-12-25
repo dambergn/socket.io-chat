@@ -1,6 +1,7 @@
 # Socket.io Chat
 - https://socket.io/get-started/chat/
 - https://itnext.io/building-a-node-js-websocket-chat-app-with-socket-io-and-react-473a0686d1e1
+- https://www.youtube.com/watch?v=jD7FnbI76Hg
 
 ## Features
 - [x] Create basic chat room
